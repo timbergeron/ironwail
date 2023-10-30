@@ -22,3 +22,10 @@ jobs:
         )
         & $msbuild Windows\VisualStudio\ironwail.sln $options
         if (-not $?) { throw "Build failed" }
+    - name: Upload ironwail
+      uses: actions/upload-artifact@v3
+      with:
+        name: ironwailarchive (Release, ${{ matrix.platform }})
+        path: |
+            Windows\VisualStudio\Build-ironwail\**\*.exe
+            Windows\VisualStudio\Build-ironwail\**\*.dll
